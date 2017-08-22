@@ -1,0 +1,363 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee">
+
+    <!-- 4 BUTTONS -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/buttonApps"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:background="#759d47"
+                android:text="APPS"
+                android:textColor="#ffffff"
+                android:onClick="onClickAPPS"/>
+
+            <Button
+                android:id="@+id/buttonMovies"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:background="#db4b44"
+                android:text="Movies"
+                android:textColor="#ffffff"
+                android:onClick="onClickMOVIES"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/buttonGames"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:background="#759d47"
+                android:text="Games"
+                android:textColor="#ffffff"
+                android:onClick="onClickGAMES"/>
+
+            <Button
+                android:id="@+id/buttonBooks"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:background="#419adf"
+                android:text="Books"
+                android:textColor="#ffffff"
+                android:onClick="onClickBOOKS"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- RacingGames-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/RacingGames"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="117dp"
+            android:text="Racing Games"
+            android:textColor="#f111"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/BeattheRecords2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/RacingGames"
+            android:layout_below="@id/RacingGames"
+            android:text="Beat the Records!"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/buttonMORE"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@+id/BeattheRecords2"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="#759d47"
+            android:text=" MORE "
+            android:textColor="#ffffff"
+            android:onClick="onClickMore1"
+            />
+
+        <TextView
+            android:id="@+id/whitespace"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:layout_marginTop="8dp"
+            android:background="#ffffff"
+            android:layout_below="@+id/BeattheRecords2"
+            android:layout_alignRight="@+id/buttonMORE"
+            android:layout_alignEnd="@+id/buttonMORE"
+            android:layout_alignLeft="@+id/imageUno"
+            android:layout_alignStart="@+id/imageUno" />
+
+        <ImageView
+            android:id="@+id/imageCrs"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="9dp"
+            app:srcCompat="@drawable/crs"
+            android:layout_alignTop="@+id/whitespace"
+            android:layout_alignLeft="@+id/BeattheRecords2"
+            android:layout_alignStart="@+id/BeattheRecords2"
+            android:layout_marginLeft="9dp"
+            android:layout_marginStart="9dp" />
+
+        <TextView
+            android:id="@+id/CSRRacing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CSRRacing"
+            android:textColor="#f111"
+            android:textSize="17sp"
+            android:layout_alignTop="@+id/imageCrs"
+            android:layout_toRightOf="@+id/imageCrs"
+            android:layout_toEndOf="@+id/imageCrs"
+            android:layout_marginLeft="18dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="11dp" />
+
+        <ImageView
+            android:id="@+id/imageStar"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/star"
+            android:layout_below="@+id/CSRRacing"
+            android:layout_alignLeft="@+id/CSRRacing"
+            android:layout_alignStart="@+id/CSRRacing" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*** The best-selling drag racing series - over 100 million downloads ***"
+            android:textSize="16sp"
+            android:layout_below="@+id/imageStar"
+            android:layout_alignLeft="@+id/imageStar"
+            android:layout_alignStart="@+id/imageStar"
+            android:layout_marginTop="11dp" />
+
+    <!-- New + Update-->
+        <TextView
+            android:id="@+id/textNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="158dp"
+            android:text="New + Updated Games"
+            android:layout_below ="@+id/whitespace"
+            android:layout_alignLeft="@id/RacingGames"
+            android:layout_marginTop="24dp"
+            android:textColor="#f111"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/SubNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textNew"
+            android:layout_alignTop="@+id/textNew"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="6dp"
+            android:layout_below ="@+id/whitespace"
+            android:text="New recommendations every week!"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/buttonMORE2"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:background="#759d47"
+            android:text="MORE"
+            android:textColor="#ffffff"
+            android:layout_alignBottom="@+id/SubNew"
+            android:layout_alignLeft="@+id/buttonMORE"
+            android:onClick="onClickMore2"/>
+
+        <TextView
+            android:id="@+id/whitespaceCenter"
+            android:layout_width="125dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/SubNew"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/imageUno"
+            android:layout_toRightOf="@+id/imageUno"
+            android:background="#ffffff" />
+
+        <TextView
+            android:id="@+id/whitespaceLeft"
+            android:layout_width="125dp"
+            android:layout_height="150dp"
+            android:background="#ffffff"
+            android:layout_alignBaseline="@+id/whitespaceCenter"
+            android:layout_alignBottom="@+id/whitespaceCenter"
+            android:layout_toLeftOf="@+id/imageGame2"
+            android:layout_toStartOf="@+id/imageGame2" />
+
+        <TextView
+            android:id="@+id/whitespaceRight"
+            android:layout_width="125dp"
+            android:layout_height="150dp"
+            android:layout_alignBaseline="@+id/whitespaceCenter"
+            android:layout_alignBottom="@+id/whitespaceCenter"
+            android:layout_alignEnd="@+id/buttonMORE2"
+            android:layout_alignRight="@+id/buttonMORE2"
+            android:background="#ffffff" />
+
+        <ImageView
+            android:id="@+id/imageUno"
+            android:layout_width="135dp"
+            android:layout_height="118dp"
+            app:srcCompat="@drawable/uno"
+            android:layout_alignBottom="@+id/imageGame2"
+            android:layout_alignRight="@+id/RacingGames"
+            android:layout_alignEnd="@+id/RacingGames" />
+
+        <ImageView
+            android:id="@+id/imageGame2"
+            android:layout_width="135dp"
+            android:layout_height="120dp"
+            app:srcCompat="@drawable/game2"
+            android:layout_alignTop="@+id/whitespaceCenter"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/imageGame3"
+            android:layout_width="135dp"
+            android:layout_height="120dp"
+            android:layout_alignEnd="@+id/whitespaceRight"
+            android:layout_alignRight="@+id/whitespaceRight"
+            android:layout_alignTop="@+id/imageGame2"
+            app:srcCompat="@drawable/game3" />
+
+        <TextView
+            android:id="@+id/textG1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UNO-Friends"
+            android:textColor="#f111"
+            android:textSize="14sp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginStart="18dp"
+            android:layout_below="@+id/textNew"
+            android:layout_alignLeft="@+id/SubNew"
+            android:layout_alignStart="@+id/SubNew" />
+
+        <TextView
+            android:id="@+id/textG2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jumpy Witch"
+            android:textColor="#f111"
+            android:textSize="14sp"
+            android:layout_below="@+id/textNew"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/textG3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SpellfallPuzzle"
+            android:textColor="#f111"
+            android:textSize="14sp"
+            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_alignBaseline="@+id/textG2"
+            android:layout_alignBottom="@+id/textG2"
+            android:layout_alignRight="@+id/whitespaceRight"
+            android:layout_alignEnd="@+id/whitespaceRight" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textNew"
+            android:layout_alignLeft="@+id/text"
+            android:layout_alignStart="@+id/text"
+            app:srcCompat="@drawable/h" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView6"
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text=" 5 stars"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="227dp"
+        android:layout_toLeftOf="@+id/textView7"
+        android:layout_toStartOf="@+id/textView7"
+        android:text="randy adams"
+        android:textStyle="italic"
+        android:textColor="#3f3d3d" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FREE"
+        android:textColor="#a7c089"
+        android:textSize="10sp"
+        android:layout_alignBottom="@+id/imageView4"
+        android:layout_alignRight="@+id/textView7"
+        android:layout_alignEnd="@+id/textView7"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp" />
+
+</RelativeLayout>
