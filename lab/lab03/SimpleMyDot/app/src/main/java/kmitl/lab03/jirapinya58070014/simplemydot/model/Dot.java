@@ -12,12 +12,12 @@ public class Dot {
         this.listener = listener;
     }
 
-    private int centerX;
-    private int centerY;
+    private float centerX;
+    private float centerY;
     private int radius;
     private int r, g, b;
 
-    public Dot(OnDotChangedListener listener, int centerX, int centerY, int radius) {
+    public Dot(OnDotChangedListener listener, float centerX, float centerY, int radius) {
         this.listener = listener;
         this.centerX = centerX;
         this.centerY = centerY;
@@ -39,21 +39,21 @@ public class Dot {
 
 
     //Position
-    public void setCenterX(int centerX) {
+    public void setCenterX(float centerX) {
         this.centerX = centerX;
         this.listener.onDotChanged(this);   //this=dot
     }
 
-    public void setCenterY(int centerY) {
+    public void setCenterY(float centerY) {
         this.centerY = centerY;
         this.listener.onDotChanged(this);
     }
 
-    public int getCenterX() {
+    public float getCenterX() {
         return centerX;
     }
 
-    public int getCenterY() {
+    public float getCenterY() {
         return centerY;
     }
 
