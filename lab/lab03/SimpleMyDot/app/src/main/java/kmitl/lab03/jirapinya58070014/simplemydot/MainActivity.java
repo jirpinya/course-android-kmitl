@@ -32,16 +32,17 @@ public class MainActivity extends AppCompatActivity implements Dot.OnDotChangedL
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-        float x =  e.getX();
-        float y =  e.getY()-200;
-
-        CreateDot(x, y);
+        if (e.getAction() == MotionEvent.ACTION_DOWN) {
+            float x =  e.getX();
+            float y =  e.getY()-200;
+            CreateDot(x, y);
+        }
         return true;
     }
 
     public void CreateDot(float x, float y){
         //Radius
-        int r = ((int)(Math.random()*100))+20;
+        int r = ((int)(Math.random()*80))+20;
 
         //RandomColor
         Random random = new Random();
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements Dot.OnDotChangedL
         Random random = new Random();
 
         //Position & Radius
-        int r = ((int)(Math.random()*100))+20;
+        int r = ((int)(Math.random()*80))+20;
         int centerX = random.nextInt(this.dotView.getWidth());
         int centerY = random.nextInt(this.dotView.getHeight());
         CreateDot(centerX, centerY);
