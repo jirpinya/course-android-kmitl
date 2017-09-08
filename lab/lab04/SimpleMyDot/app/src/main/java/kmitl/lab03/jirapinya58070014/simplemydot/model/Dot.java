@@ -1,60 +1,46 @@
 package kmitl.lab03.jirapinya58070014.simplemydot.model;
 
+import android.graphics.Color;
+
 public class Dot {
-
-    public interface OnDotChangedListener {
-        void onDotChanged(Dot dot);
-    }
-
-    private OnDotChangedListener listener;
-
-    public void setListener(OnDotChangedListener listener) {
-        this.listener = listener;
-    }
-
-    private float centerX;
-    private float centerY;
+    private int centerX;
+    private int centerY;
     private int radius;
-    private int r, g, b;
+    private int color;
 
-    public Dot(OnDotChangedListener listener, float centerX, float centerY, int radius) {
-        this.listener = listener;
+    public Dot(int centerX, int centerY, int radius) {
+        this(centerX, centerY, radius, Color.RED);
+    }
+
+    public Dot(int centerX, int centerY, int radius, int color) {
         this.centerX = centerX;
         this.centerY = centerY;
         this.radius = radius;
+        this.color = color;
     }
 
-    //Color
-    public void setColor(int r, int g, int b){
-        this.r = r;
-        this.g = g;
-        this.b = b;
+    public int getColor() {
+        return color;
     }
 
-    public int getColorRed() {return r;}
-
-    public int getColorGreen() {return g;}
-
-    public int getColorBlue() {return b;}
-
-
-    //Position
-    public void setCenterX(float centerX) {
-        this.centerX = centerX;
-        this.listener.onDotChanged(this);   //this=dot
+    public void setColor(int color) {
+        this.color = color;
     }
 
-    public void setCenterY(float centerY) {
-        this.centerY = centerY;
-        this.listener.onDotChanged(this);
-    }
-
-    public float getCenterX() {
+    public int getCenterX() {
         return centerX;
     }
 
-    public float getCenterY() {
+    public void setCenterX(int centerX) {
+        this.centerX = centerX;
+    }
+
+    public int getCenterY() {
         return centerY;
+    }
+
+    public void setCenterY(int centerY) {
+        this.centerY = centerY;
     }
 
     public int getRadius() {
