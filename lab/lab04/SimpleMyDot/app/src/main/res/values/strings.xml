@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SimpleMyDot</string>
+    <string name="random_dot">RANDOM DOT</string>
+    <string name="clear_all">CLEAR ALL</string>
+    <string name="share">Share</string>
+    <string name="facebook_app_id">102980970445575</string>
+</resources>
