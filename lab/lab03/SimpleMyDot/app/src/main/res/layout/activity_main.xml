@@ -50,6 +50,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.963" />
 
+    <Button
+        android:id="@+id/btnOpenActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OPEN ACTIVITY"
+        tools:layout_editor_absoluteX="229dp"
+        tools:layout_editor_absoluteY="364dp" />
+
     <kmitl.lab03.jirapinya58070014.simplemydot.view.DotView
         android:id="@+id/dotView"
         android:layout_width="wrap_content"
