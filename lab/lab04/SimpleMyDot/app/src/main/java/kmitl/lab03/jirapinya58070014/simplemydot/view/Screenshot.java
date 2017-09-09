@@ -30,7 +30,7 @@ public class Screenshot {
     }
 
     public void saveBitmap(Bitmap bitmap) {
-        //File imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
+        File imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
         FileOutputStream fos;
         try {
             fos = new FileOutputStream(imagePath);
