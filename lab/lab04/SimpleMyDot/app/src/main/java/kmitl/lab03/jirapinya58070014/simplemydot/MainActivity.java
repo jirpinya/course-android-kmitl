@@ -2,7 +2,6 @@ package kmitl.lab03.jirapinya58070014.simplemydot;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,11 +18,10 @@ import kmitl.lab03.jirapinya58070014.simplemydot.view.DotView;
 import kmitl.lab03.jirapinya58070014.simplemydot.model.Screenshot;
 
 public class MainActivity extends AppCompatActivity
-implements Dots.OnDotsChangeListener, DotView.OnDotViewPressListener{
+        implements Dots.OnDotsChangeListener, DotView.OnDotViewPressListener {
 
     private DotView dotView;
     private Dots dots;
-    private View main;
     private ImageView imageView;
 
     @Override
@@ -31,12 +29,6 @@ implements Dots.OnDotsChangeListener, DotView.OnDotViewPressListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        // Initialize the SDK before executing any other operations,
-        //FacebookSdk.sdkInitialize(getApplicationContext());
-        //AppEventsLogger.activateApp(this);
-
-        main = findViewById(R.id.main);
         imageView = (ImageView) findViewById(R.id.imageView);
         dotView = (DotView) findViewById(R.id.dotView);
         dotView.setOnDotViewPressListener(this);
@@ -52,16 +44,9 @@ implements Dots.OnDotsChangeListener, DotView.OnDotViewPressListener{
                 Bitmap image = Screenshot.takescreenshotOfRootView(imageView);
                 Uri uriImage = Screenshot.saveBitmap(image);
 
-                imageView.setImageBitmap(image);
-                main.setBackgroundColor(Color.parseColor("#999999"));
-
-                Intent intent = new Intent(MainActivity.this, SharingActivity.class);
-                intent.putExtra("uriImage", uriImage.toString());
-                startActivity(intent);
-                finish();
+                startActivity(Intent.createChooser(createShareIntent(uriImage), " How do you want to share? "));
             }
         });
-
     }
 
 
@@ -86,11 +71,19 @@ implements Dots.OnDotsChangeListener, DotView.OnDotViewPressListener{
     @Override
     public void onDotViewPressed(int x, int y) {
         int dotPosition = dots.findDot(x, y);
-        if(dotPosition == -1) {
+        if (dotPosition == -1) {
             Dot newDot = new Dot(x, y, 30, new Colors().getColor());
             dots.addDot(newDot);
         } else {
             dots.removeBy(dotPosition);
         }
+    }
+
+    //Share Image
+    private Intent createShareIntent(Uri uriImage) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("image/*");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uriImage);
+        return shareIntent;
     }
 }
