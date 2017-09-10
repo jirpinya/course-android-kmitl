@@ -25,6 +25,12 @@
                 android:authorities="com.facebook.app.FacebookContentProvider102980970445575"
                 android:exported="true" />
         </activity>
+        <activity android:name=".SharingActivity">
+            <provider
+                android:name="com.facebook.FacebookContentProvider"
+                android:authorities="com.facebook.app.FacebookContentProvider102980970445575"
+                android:exported="true" />
+        </activity>
     </application>
 
 </manifest>

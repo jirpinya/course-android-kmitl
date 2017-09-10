@@ -1,7 +1,5 @@
-package kmitl.lab03.jirapinya58070014.simplemydot.view;
+package kmitl.lab03.jirapinya58070014.simplemydot.model;
 
-
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
@@ -22,6 +20,8 @@ public class Screenshot {
         v.buildDrawingCache(true);
         Bitmap b = Bitmap.createBitmap(v.getDrawingCache());
         v.setDrawingCacheEnabled(false);
+
+
         return b;
     }
 
@@ -29,32 +29,21 @@ public class Screenshot {
         return takescreenshot(view.getRootView());
     }
 
-    public void saveBitmap(Bitmap bitmap) {
-        File imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
+    public static Uri saveBitmap(Bitmap bitmap) {
+        File imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png"); //path to sd card
         FileOutputStream fos;
+        Uri uriImage = Uri.fromFile(imagePath);
         try {
             fos = new FileOutputStream(imagePath);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.flush();
             fos.close();
+
         } catch (FileNotFoundException e) {
             Log.e("GREC", e.getMessage(), e);
         } catch (IOException e) {
             Log.e("GREC", e.getMessage(), e);
         }
+        return uriImage;
     }
-
-    public void shareIt() {
-        Uri uri = Uri.fromFile(imagePath);
-
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-        sharingIntent.setType("image/*");
-        String shareBody = "In Tweecher, My highest score with screen shot";
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "My Tweecher score");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-        sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
-
-
-    }
-
 }
