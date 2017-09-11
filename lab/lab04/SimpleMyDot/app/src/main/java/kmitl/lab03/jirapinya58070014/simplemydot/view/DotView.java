@@ -20,21 +20,22 @@ public class DotView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if(this.allDot != null) {
-            for (Dot dot: allDot.getAllDot()) {
+        if (this.allDot != null) {
+            for (Dot dot : allDot.getAllDot()) {
                 paint.setColor(dot.getColor());
                 canvas.drawCircle(
                         dot.getCenterX(),
-                        dot.getCenterY(), 30, paint);
+                        dot.getCenterY(), dot.getRadius(), paint);
             }
         }
     }
 
-    public interface OnDotViewPressListener{
+    public interface OnDotViewPressListener {
         void onDotViewPressed(int x, int y);
     }
 
     private OnDotViewPressListener onDotViewPressListener;
+
     public void setOnDotViewPressListener(
             OnDotViewPressListener onDotViewPressListener) {
         this.onDotViewPressListener = onDotViewPressListener;
@@ -46,8 +47,8 @@ public class DotView extends View {
             case MotionEvent.ACTION_DOWN:
                 this.onDotViewPressListener
                         .onDotViewPressed(
-                                (int)event.getX(),
-                                (int)event.getY());
+                                (int) event.getX(),
+                                (int) event.getY());
                 return true;
         }
         return false;

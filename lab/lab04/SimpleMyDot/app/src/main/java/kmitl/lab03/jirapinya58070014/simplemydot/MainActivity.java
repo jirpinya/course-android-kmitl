@@ -36,25 +36,28 @@ public class MainActivity extends AppCompatActivity
         dots = new Dots();
         dots.setListener(this);
 
-        //Click Share
+        //--- Click Share ---//
         Button share = (Button) findViewById(R.id.share);
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //Screenshot
                 Bitmap image = Screenshot.takescreenshotOfRootView(imageView);
                 Uri uriImage = Screenshot.saveBitmap(image);
 
+                //Share
                 startActivity(Intent.createChooser(createShareIntent(uriImage), " How do you want to share? "));
             }
         });
     }
 
-
     public void onRandomDot(View view) {
         Random random = new Random();
         int centerX = random.nextInt(dotView.getWidth());
         int centerY = random.nextInt(dotView.getHeight());
-        Dot newDot = new Dot(centerX, centerY, 30, new Colors().getColor());
+        int r = ((int) (Math.random() * 60)) + 20;
+        Dot newDot = new Dot(centerX, centerY, r, new Colors().getColor());
         dots.addDot(newDot);
     }
 
@@ -64,26 +67,32 @@ public class MainActivity extends AppCompatActivity
         dotView.invalidate();
     }
 
-    public void onRemoveAll(View view) {
-        dots.clearAll();
-    }
-
-    @Override
-    public void onDotViewPressed(int x, int y) {
-        int dotPosition = dots.findDot(x, y);
-        if (dotPosition == -1) {
-            Dot newDot = new Dot(x, y, 30, new Colors().getColor());
-            dots.addDot(newDot);
-        } else {
-            dots.removeBy(dotPosition);
-        }
-    }
-
     //Share Image
     private Intent createShareIntent(Uri uriImage) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("image/*");
         shareIntent.putExtra(Intent.EXTRA_STREAM, uriImage);
         return shareIntent;
+    }
+
+    public void onRemoveAll(View view) {
+        dots.clearAll();
+    }
+
+    //--- Click on Dot ---//
+    @Override
+    public void onDotViewPressed(final int x, final int y) {
+        int dotPosition = dots.findDot(x, y);  //get index in List
+        int r = ((int) (Math.random() * 60)) + 20;
+
+        //Don't have dot
+        if (dotPosition == -1) {
+            Dot newDot = new Dot(x, y, r, new Colors().getColor());
+            dots.addDot(newDot);
+
+         //Have dot
+        } else {
+            dots.editDot(dotPosition, r, this);
+        }
     }
 }
