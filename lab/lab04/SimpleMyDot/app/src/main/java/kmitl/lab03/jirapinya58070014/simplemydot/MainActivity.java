@@ -1,13 +1,19 @@
 package kmitl.lab03.jirapinya58070014.simplemydot;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+import android.Manifest;
 
 import java.util.Random;
 
@@ -23,6 +29,7 @@ public class MainActivity extends AppCompatActivity
     private DotView dotView;
     private Dots dots;
     private ImageView imageView;
+    private final int WRITE_EXTERNAL_REQUEST_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +49,15 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                //Screenshot
-                Bitmap image = Screenshot.takescreenshotOfRootView(imageView);
-                Uri uriImage = Screenshot.saveBitmap(image);
+                askPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,WRITE_EXTERNAL_REQUEST_CODE);
 
-                //Share
-                startActivity(Intent.createChooser(createShareIntent(uriImage), " How do you want to share? "));
+                    //Screenshot
+                    Bitmap image = Screenshot.takescreenshotOfRootView(imageView);
+                    Uri uriImage = Screenshot.saveBitmap(image);
+
+                    //Share
+                    startActivity(Intent.createChooser(createShareIntent(uriImage), " How do you want to share? "));
+
             }
         });
     }
@@ -93,6 +103,26 @@ public class MainActivity extends AppCompatActivity
          //Have dot
         } else {
             dots.editDot(dotPosition, r, this);
+        }
+    }
+
+    private void askPermission(String permission, int requestCode){
+        if(ContextCompat.checkSelfPermission(this,permission) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new  String[]{permission}, requestCode);
+        }
+        else{
+            Toast.makeText(this, "Permission is Already Granted", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+        switch (requestCode) {
+            case WRITE_EXTERNAL_REQUEST_CODE:
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "WRITE_EXTERNAL Permission Granted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "WRITE_EXTERNAL Permission Denied", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

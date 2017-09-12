@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kmitl.lab03.jirapinya58070014.simplemydot">
 
+    <uses-permission android:name="android.permission."/>
     <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>;
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -27,6 +29,7 @@
                 android:name="com.facebook.FacebookContentProvider"
                 android:authorities="com.facebook.app.FacebookContentProvider102980970445575"
                 android:exported="true" />
+
         </activity>
     </application>
 
