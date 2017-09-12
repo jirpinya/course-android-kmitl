@@ -40,6 +40,13 @@ public class Dots {
         this.listener.onDotsChanged(this);
     }
 
+    public void undoDot() {
+        if(this.allDot.size()!=0) {
+            allDot.remove(this.allDot.size() - 1);
+            this.listener.onDotsChanged(this);
+        }
+    }
+
     public void changeColor(int index) {
         int newColor = new Colors().getColor();
         while (getColorDot(index) == newColor) {

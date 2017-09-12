@@ -10,10 +10,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.Manifest;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -42,24 +41,6 @@ public class MainActivity extends AppCompatActivity
 
         dots = new Dots();
         dots.setListener(this);
-
-        //--- Click Share ---//
-        Button share = (Button) findViewById(R.id.share);
-        share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                askPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,WRITE_EXTERNAL_REQUEST_CODE);
-
-                    //Screenshot
-                    Bitmap image = Screenshot.takescreenshotOfRootView(imageView);
-                    Uri uriImage = Screenshot.saveBitmap(image);
-
-                    //Share
-                    startActivity(Intent.createChooser(createShareIntent(uriImage), " How do you want to share? "));
-
-            }
-        });
     }
 
     public void onRandomDot(View view) {
@@ -78,15 +59,34 @@ public class MainActivity extends AppCompatActivity
     }
 
     //Share Image
-    private Intent createShareIntent(Uri uriImage) {
+    private void createShareIntent(Uri uriImage) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("image/*");
         shareIntent.putExtra(Intent.EXTRA_STREAM, uriImage);
-        return shareIntent;
+        startActivity(Intent.createChooser(shareIntent, " How do you want to share? "));
     }
 
+    //Click Remove
     public void onRemoveAll(View view) {
         dots.clearAll();
+    }
+
+    //ClickUndo
+    public void onClickUndo(View view) {
+        dots.undoDot();
+    }
+
+    //ClickShare
+    public void onClickShare(View view) {
+        //Permission
+        if (askPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, WRITE_EXTERNAL_REQUEST_CODE)) {
+            //Screenshot
+            Bitmap image = Screenshot.takescreenshotOfRootView(imageView);
+            Uri uriImage = Screenshot.saveBitmap(image);
+
+            //Share
+            createShareIntent(uriImage);
+        }
     }
 
     //--- Click on Dot ---//
@@ -100,29 +100,33 @@ public class MainActivity extends AppCompatActivity
             Dot newDot = new Dot(x, y, r, new Colors().getColor());
             dots.addDot(newDot);
 
-         //Have dot
+            //Have dot
         } else {
             dots.editDot(dotPosition, r, this);
         }
     }
 
-    private void askPermission(String permission, int requestCode){
-        if(ContextCompat.checkSelfPermission(this,permission) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new  String[]{permission}, requestCode);
-        }
-        else{
+    //------- Permission ------//
+    private boolean askPermission(String permission, int requestCode) {
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
+            return false;
+        } else {
             Toast.makeText(this, "Permission is Already Granted", Toast.LENGTH_SHORT).show();
+            return true;
         }
     }
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case WRITE_EXTERNAL_REQUEST_CODE:
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "WRITE_EXTERNAL Permission Granted", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "WRITE_EXTERNAL Permission Denied", Toast.LENGTH_SHORT).show();
-            }
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "WRITE_EXTERNAL Permission Granted", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "WRITE_EXTERNAL Permission Denied", Toast.LENGTH_SHORT).show();
+                }
+                return;
         }
     }
 }

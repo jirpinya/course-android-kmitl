@@ -34,9 +34,6 @@ public class Screenshot {
         File imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png"); //path to sd card
         FileOutputStream fos;
         Uri uriImage = Uri.fromFile(imagePath);
-//        Uri uriImage = FileProvider.getUriForFile(context,
-//                BuildConfig.APPLICATION_ID + ".provider",
-//                imagePath);
 
         try {
             fos = new FileOutputStream(imagePath);
