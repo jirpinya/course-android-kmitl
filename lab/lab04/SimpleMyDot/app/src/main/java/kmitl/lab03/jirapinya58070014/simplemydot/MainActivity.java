@@ -1,5 +1,6 @@
 package kmitl.lab03.jirapinya58070014.simplemydot;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -63,8 +64,13 @@ public class MainActivity extends AppCompatActivity
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("image/*");
         shareIntent.putExtra(Intent.EXTRA_STREAM, uriImage);
-        startActivity(Intent.createChooser(shareIntent, " How do you want to share? "));
+        try {
+            startActivity(Intent.createChooser(shareIntent, " How do you want to share? "));
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(MainActivity.this, "No App Available", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     //Click Remove
     public void onRemoveAll(View view) {
@@ -82,10 +88,10 @@ public class MainActivity extends AppCompatActivity
         if (askPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, WRITE_EXTERNAL_REQUEST_CODE)) {
             //Screenshot
             Bitmap image = Screenshot.takescreenshotOfRootView(imageView);
-            Uri uriImage = Screenshot.saveBitmap(image);
+            Uri screenshotUri = Screenshot.getImageUri(this.getApplicationContext(), image);
 
             //Share
-            createShareIntent(uriImage);
+            createShareIntent(screenshotUri);
         }
     }
 
