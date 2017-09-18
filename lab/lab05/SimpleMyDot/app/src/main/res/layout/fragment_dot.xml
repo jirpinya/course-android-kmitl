@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="kmitl.lab03.jirapinya58070014.simplemydot.fragment.DotFragment"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <kmitl.lab03.jirapinya58070014.simplemydot.view.DotView
+        android:id="@+id/dotView"
+        android:layout_height="0dp"
+        android:layout_width="421dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/random"
+        android:onClick="onRandomDot"
+        android:layout_width="220dp"
+        android:layout_height="0dp"
+        android:text="@string/random_dot"
+        android:background="#330000"
+        android:textColor="#FFFF00"
+        android:textSize="20sp"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/undo"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/removeAll"
+        android:onClick="onRemoveAll"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:text="@string/CLEAR"
+        android:background="#FF6633"
+        android:textColor="#ffffff"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.498" />
+
+    <Button
+        android:id="@+id/share"
+        android:layout_width="88dp"
+        android:layout_height="40dp"
+        android:onClick="onClickShare"
+        android:text="@string/share"
+        android:background="#CC3300"
+        android:textColor="#ffffff"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/random"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toRightOf="@+id/random" />
+
+
+    <Button
+        android:id="@+id/undo"
+        android:layout_width="88dp"
+        android:layout_height="40dp"
+        android:background="#CC3300"
+        android:onClick="onClickUndo"
+        android:text="@string/undo"
+        android:textColor="#ffffff"
+        app:layout_constraintRight_toLeftOf="@+id/random"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/random"
+        app:layout_constraintHorizontal_bias="0.443" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitCenter"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="parent"
+        android:layout_marginStart="2dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/dotView"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="2dp" />
+
+</android.support.constraint.ConstraintLayout>

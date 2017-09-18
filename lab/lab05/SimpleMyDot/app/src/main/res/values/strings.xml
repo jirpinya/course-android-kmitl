@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SimpleMyDot</string>
+    <string name="random_dot">RANDOM DOT</string>
+    <string name="clear_all">CLEAR ALL</string>
+    <string name="share">SHARE</string>
+    <string name="facebook_app_id">102980970445575</string>
+    <string name="undo">undo</string>
+    <string name="clear">CLEAR</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="CLEAR">CLEAR</string>
+</resources>

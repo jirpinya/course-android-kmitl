@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#660033"
+    tools:context="kmitl.lab03.jirapinya58070014.simplemydot.fragment.EditDotFragment"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+
+        <EditText
+            android:id="@+id/radius"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="2"
+            android:inputType="number"
+            android:textColor="#FF3366"
+            android:gravity="center_horizontal"
+            android:textSize="16sp"
+            android:layout_alignBottom="@+id/saveBtn"
+            android:layout_toRightOf="@+id/textView3"
+            android:layout_toEndOf="@+id/textView3" />
+
+        <EditText
+            android:id="@+id/centerY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="2"
+            android:textColor="#FF3366"
+            android:inputType="number"
+            android:textSize="16sp"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/centerX"
+            android:layout_alignLeft="@+id/centerX"
+            android:layout_alignStart="@+id/centerX" />
+
+        <TextView
+            android:id="@+id/x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="11dp"
+            android:text="Center X :"
+            android:textColor="#FFCCFF"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Radius : "
+            android:textColor="#FFCCFF"
+            android:textSize="14sp"
+            android:layout_alignBaseline="@+id/radius"
+            android:layout_alignBottom="@+id/radius"
+            android:layout_toRightOf="@+id/centerX"
+            android:layout_toEndOf="@+id/centerX"
+            android:layout_marginLeft="23dp"
+            android:layout_marginStart="23dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/centerY"
+            android:layout_alignBottom="@+id/centerY"
+            android:layout_toLeftOf="@+id/centerY"
+            android:layout_toStartOf="@+id/centerY"
+            android:text="Center Y :"
+            android:textColor="#FFCCFF"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/centerX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/x"
+            android:layout_toRightOf="@+id/x"
+            android:ems="2"
+            android:gravity="center_horizontal"
+            android:textColor="#FF3366"
+            android:inputType="number"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="#000000"
+            android:textColor="#FF3366"
+            android:text="CANCEL"
+            android:layout_alignBottom="@+id/centerY"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="#FF3366"
+            android:layout_above="@+id/centerY"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="SAVE" />
+
+        <View
+            android:id="@+id/colorBar"
+            android:layout_width="115dp"
+            android:layout_height="40dp"
+            android:background="@android:color/black"
+            android:shape="oval"
+            android:layout_alignLeft="@+id/textView3"
+            android:layout_alignStart="@+id/textView3"
+            android:layout_alignTop="@+id/cancelBtn"
+            android:layout_alignBottom="@+id/centerY"
+            android:layout_alignRight="@+id/radius"
+            android:layout_alignEnd="@+id/radius" />
+    </RelativeLayout>
+
+
+</FrameLayout>
