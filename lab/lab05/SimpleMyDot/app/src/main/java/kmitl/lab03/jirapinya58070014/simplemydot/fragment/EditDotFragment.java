@@ -14,14 +14,12 @@ import kmitl.lab03.jirapinya58070014.simplemydot.R;
 import kmitl.lab03.jirapinya58070014.simplemydot.model.Dot;
 import kmitl.lab03.jirapinya58070014.simplemydot.model.Dots;
 
-public class EditDotFragment extends Fragment implements View.OnClickListener{
+public class EditDotFragment extends Fragment implements View.OnClickListener {
 
     private static final String DOT = "dot";
     private static final String DOTS = "dots";
     private static final String POSITION = "position";
 
-    private Button Save;
-    private Button Cancel;
     private Dot dot;
     private Dots dots;
     private int dotPosition;
@@ -30,7 +28,6 @@ public class EditDotFragment extends Fragment implements View.OnClickListener{
     private EditText Radius;
     private View ColorBar;
     private int color;
-    private ColorPickerDialog colorPickerDialog;
 
     public static EditDotFragment newInstance(Dot dot, Dots dots, int dotPosition) {
         EditDotFragment fragment = new EditDotFragment();
@@ -57,21 +54,22 @@ public class EditDotFragment extends Fragment implements View.OnClickListener{
         Radius = (EditText) rootView.findViewById(R.id.radius);
 
         ColorBar = rootView.findViewById(R.id.colorBar);
-        Save = (Button) rootView.findViewById(R.id.saveBtn);
-        Cancel = (Button) rootView.findViewById(R.id.cancelBtn);
+        Button save = (Button) rootView.findViewById(R.id.saveBtn);
+        Button cancel = (Button) rootView.findViewById(R.id.cancelBtn);
 
         ColorBar.setOnClickListener(this);
-        Save.setOnClickListener(this);
-        Cancel.setOnClickListener(this);
+        save.setOnClickListener(this);
+        cancel.setOnClickListener(this);
 
-        if (dot != null) {
-            CenterX.setText(String.valueOf(dot.getCenterX()));
-            CenterY.setText(String.valueOf(dot.getCenterY()));
-            Radius.setText(String.valueOf(dot.getRadius()));
-            ColorBar.setBackgroundColor(dot.getColor());
+        color = dot.getColor();
 
-        }
-        return rootView;}
+        CenterX.setText(String.valueOf(dot.getCenterX()));
+        CenterY.setText(String.valueOf(dot.getCenterY()));
+        Radius.setText(String.valueOf(dot.getRadius()));
+        ColorBar.setBackgroundColor(color);
+
+        return rootView;
+    }
 
     @Override
     public void onClick(View view) {
@@ -84,8 +82,7 @@ public class EditDotFragment extends Fragment implements View.OnClickListener{
                 getActivity().onBackPressed();
                 break;
             case R.id.colorBar:
-                color = dot.getColor();
-                colorPickerDialog = new ColorPickerDialog(getContext(), color);
+                ColorPickerDialog colorPickerDialog = new ColorPickerDialog(getContext(), color);
                 colorPickerDialog.setAlphaSliderVisible(true);
                 colorPickerDialog.setHexValueEnabled(true);
                 colorPickerDialog.setOnColorChangedListener(new ColorPickerDialog.OnColorChangedListener() {
@@ -101,10 +98,10 @@ public class EditDotFragment extends Fragment implements View.OnClickListener{
     }
 
     private void save() {
+        dot.setColor(color);
         dot.setCenterX(Integer.parseInt(String.valueOf(CenterX.getText())));
         dot.setCenterY(Integer.parseInt(String.valueOf(CenterY.getText())));
         dot.setRadius(Integer.parseInt(String.valueOf(Radius.getText())));
-        dot.setColor(color);
         dots.editAttributeDot(dotPosition, dot);
     }
 }

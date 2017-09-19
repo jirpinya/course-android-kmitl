@@ -11,16 +11,18 @@ import java.util.List;
 
 public class Dots implements Parcelable {
 
-
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {}
+    public void writeToParcel(Parcel dest, int flags) {
+    }
 
-    public interface OnDotsChangeListener {void onDotsChanged(Dots dots);}
+    public interface OnDotsChangeListener {
+        void onDotsChanged(Dots dots);
+    }
 
     private OnDotsChangeListener listener;
 
@@ -50,7 +52,7 @@ public class Dots implements Parcelable {
     }
 
     public void undoDot() {
-        if(this.allDot.size()!=0) {
+        if (this.allDot.size() != 0) {
             allDot.remove(this.allDot.size() - 1);
             this.listener.onDotsChanged(this);
         }
@@ -87,7 +89,7 @@ public class Dots implements Parcelable {
         return -1;
     }
 
-    public  void editAttributeDot(int position, Dot dot){
+    public void editAttributeDot(int position, Dot dot) {
         allDot.set(position, dot);
         this.listener.onDotsChanged(this);
     }

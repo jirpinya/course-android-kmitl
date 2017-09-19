@@ -5,17 +5,18 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
 import kmitl.lab03.jirapinya58070014.simplemydot.model.Dot;
 import kmitl.lab03.jirapinya58070014.simplemydot.model.Dots;
 
-
 public class DotView extends View {
 
     private Paint paint;
     private Dots allDot;
+    GestureDetector gestureDetector;
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -30,8 +31,11 @@ public class DotView extends View {
         }
     }
 
+
     public interface OnDotViewPressListener {
         void onDotViewPressed(int x, int y);
+
+        void onDotViewLongPressed(int x, int y);
     }
 
     private OnDotViewPressListener onDotViewPressListener;
@@ -43,32 +47,47 @@ public class DotView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                this.onDotViewPressListener
-                        .onDotViewPressed(
-                                (int) event.getX(),
-                                (int) event.getY());
+        return gestureDetector.onTouchEvent(event);
+    }
+
+    private void OnItemTouchListener(Context context) {
+        gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+
+            @Override
+            public boolean onDown(MotionEvent e) {
                 return true;
-        }
-        return false;
+            }
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                onDotViewPressListener.onDotViewPressed((int) e.getX(), (int) e.getY());
+                return true;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent e) {
+                onDotViewPressListener.onDotViewLongPressed((int) e.getX(), (int) e.getY());
+            }
+        });
     }
 
     public DotView(Context context) {
         super(context);
+        OnItemTouchListener(context);
         paint = new Paint();
     }
 
     public DotView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        OnItemTouchListener(context);
         paint = new Paint();
     }
 
     public DotView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        OnItemTouchListener(context);
         paint = new Paint();
     }
-
 
     public void setDots(Dots dots) {
         this.allDot = dots;

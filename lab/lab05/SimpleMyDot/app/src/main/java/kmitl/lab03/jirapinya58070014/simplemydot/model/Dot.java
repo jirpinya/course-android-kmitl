@@ -4,8 +4,7 @@ import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Dot implements Parcelable
-{
+public class Dot implements Parcelable {
     private int centerX;
     private int centerY;
     private int radius;
