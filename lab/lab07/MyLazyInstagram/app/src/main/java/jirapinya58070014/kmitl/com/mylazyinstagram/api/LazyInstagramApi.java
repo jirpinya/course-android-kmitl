@@ -1,6 +1,7 @@
 package jirapinya58070014.kmitl.com.mylazyinstagram.api;
 
 
+import jirapinya58070014.kmitl.com.mylazyinstagram.model.UserProfile;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

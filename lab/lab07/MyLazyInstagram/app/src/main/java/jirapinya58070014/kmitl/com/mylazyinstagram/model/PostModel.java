@@ -1,4 +1,4 @@
-package jirapinya58070014.kmitl.com.mylazyinstagram.api;
+package jirapinya58070014.kmitl.com.mylazyinstagram.model;
 
 public class PostModel {
     private String url;

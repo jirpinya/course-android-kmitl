@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jirapinya58070014.kmitl.com.mylazyinstagram.R;
-import jirapinya58070014.kmitl.com.mylazyinstagram.api.PostModel;
+import jirapinya58070014.kmitl.com.mylazyinstagram.model.PostModel;
 
 
 class Holder extends RecyclerView.ViewHolder {
@@ -93,3 +93,4 @@ public class PostAdapter extends RecyclerView.Adapter<Holder> {
     }
 
 }
+

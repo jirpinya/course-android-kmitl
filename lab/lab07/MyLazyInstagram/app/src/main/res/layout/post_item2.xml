@@ -11,16 +11,16 @@
 
     <View
         android:id="@+id/frame"
-        android:layout_width="390dp"
-        android:layout_height="137dp"
+        android:layout_width="0dp"
+        android:layout_height="136dp"
         android:background="#e4e1e1"
-        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteX="3dp"
         tools:layout_editor_absoluteY="16dp" />
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="235dp"
-        android:layout_height="122dp"
+        android:layout_width="224dp"
+        android:layout_height="116dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -28,18 +28,19 @@
         android:background="#000000"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/frame"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintLeft_toLeftOf="@+id/frame"
         app:layout_constraintRight_toRightOf="@+id/frame"
         app:layout_constraintTop_toTopOf="@+id/frame"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/like"
         android:layout_width="85dp"
         android:layout_height="28dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginRight="-1dp"
         android:layout_marginTop="8dp"
         android:text="22"
         android:textColor="#e85858"
@@ -51,7 +52,8 @@
         app:layout_constraintVertical_bias="0.204"
         app:layout_constraintLeft_toRightOf="@+id/likeIcon"
         android:layout_marginLeft="8dp"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="8dp" />
 
     <TextView
         android:id="@+id/comment"
@@ -70,7 +72,9 @@
         app:layout_constraintLeft_toRightOf="@+id/chatIcon"
         app:layout_constraintRight_toRightOf="@+id/frame"
         app:layout_constraintTop_toTopOf="@+id/frame"
-        app:layout_constraintVertical_bias="0.722" />
+        app:layout_constraintVertical_bias="0.722"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/likeIcon"
@@ -86,7 +90,9 @@
         app:layout_constraintRight_toRightOf="@+id/frame"
         app:layout_constraintTop_toTopOf="@+id/frame"
         app:layout_constraintVertical_bias="0.209"
-        app:srcCompat="@drawable/heart" />
+        app:srcCompat="@drawable/heart"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/chatIcon"
@@ -102,6 +108,8 @@
         app:layout_constraintRight_toRightOf="@+id/frame"
         app:layout_constraintTop_toTopOf="@+id/frame"
         app:layout_constraintVertical_bias="0.709"
-        app:srcCompat="@drawable/message" />
+        app:srcCompat="@drawable/message"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
 </android.support.constraint.ConstraintLayout>
