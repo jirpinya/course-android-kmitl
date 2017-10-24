@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class UserInfoListActivity extends AppCompatActivity {
     private MyAdapter adapter;
     private CommonSharePreference preference;
 
+    private Button clearList;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +41,22 @@ public class UserInfoListActivity extends AppCompatActivity {
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
 
-        UserInfoList suggestSearchList = (UserInfoList) preference.read(UserInfoListActivity.EXTTRA_LIST, UserInfoList.class);
+        final UserInfoList suggestSearchList = (UserInfoList) preference.read(UserInfoListActivity.EXTTRA_LIST, UserInfoList.class);
         if (suggestSearchList != null) {
             displaySuggestsList(suggestSearchList.getUserInfoList());
         } else {
             displaySuggestsList(new ArrayList<UserInfo>());
         }
+
+        clearList = (Button) findViewById(R.id.buttonClearList);
+        clearList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                suggestSearchList.clearList(suggestSearchList.getUserInfoList());
+                preference.save(UserInfoListActivity.EXTTRA_LIST, suggestSearchList);
+                displaySuggestsList(suggestSearchList.getUserInfoList());
+            }
+        });
     }
 
     public void displaySuggestsList(List<UserInfo> suggestsList) {
@@ -58,5 +71,7 @@ public class UserInfoListActivity extends AppCompatActivity {
         }
 
     }
+
+
 
 }

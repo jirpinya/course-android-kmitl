@@ -12,4 +12,8 @@ public class UserInfoList {
     }
 
     private List<UserInfo> userInfoList;
+
+    public void clearList(List<UserInfo> userInfoList){
+        userInfoList.clear();
+    }
 }
