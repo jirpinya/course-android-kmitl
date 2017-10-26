@@ -1,6 +1,7 @@
 package com.project.demorecord;
 
 import android.os.SystemClock;
+import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -16,11 +17,17 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
+
+    //Find
+    ViewInteraction addBtn = onView(withId(R.id.buttonAdded));
+    ViewInteraction okBtn = onView(withId(android.R.id.button1));
+    ViewInteraction editTextAge = onView(withId(R.id.editTextAge));
+    ViewInteraction buttonGotoList = onView(withId(R.id.buttonGotoList));
+    ViewInteraction editTextName = onView(withId(R.id.editTExtName));
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
@@ -29,41 +36,40 @@ public class MainActivityTest {
         return new RecyclerViewMatcher(recyclerViewId);
     }
 
-
     //----- ไม่กรอก Name และ Age กดปุ่ม ADDED จะต้องเจอ Please Enter user info -----//
     @Test
     public void test1() {
         SystemClock.sleep(1000);
-        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        addBtn.perform(click());
 
         SystemClock.sleep(1000);
         onView(withText("Please Enter user info")).check(matches(isDisplayed()));
 
         SystemClock.sleep(1000);
-        onView(allOf(withId(android.R.id.button1), withText("OK"))).perform(click());
+        okBtn.perform(click());
     }
 
     //----- ไม่กรอก Name และ Age=20 กดปุ่ม ADDED จะต้องเจอ Please Enter user info -----//
     @Test
     public void test2() {
         SystemClock.sleep(1000);
-        onView(withId(R.id.editTextAge)).perform(replaceText("20"), closeSoftKeyboard());
+        editTextAge.perform(replaceText("20"), closeSoftKeyboard());
 
         SystemClock.sleep(1000);
-        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        addBtn.perform(click());
 
         SystemClock.sleep(1000);
         onView(withText("Please Enter user info")).check(matches(isDisplayed()));
 
         SystemClock.sleep(1000);
-        onView(allOf(withId(android.R.id.button1), withText("OK"))).perform(click());
+        okBtn.perform(click());
     }
 
     //----- ไม่มีการเพิ่ม UserInfo และกด GO TO LIST จะเจอ Not Found -----//
     @Test
     public void test3() {
         SystemClock.sleep(1000);
-        onView(allOf(withId(R.id.buttonGotoList), withText("GO TO LIST"))).perform(click());
+        buttonGotoList.perform(click());
 
         SystemClock.sleep(1000);
         onView(withText("Not Found")).check(matches(isDisplayed()));
@@ -73,32 +79,32 @@ public class MainActivityTest {
     @Test
     public void test4() {
         SystemClock.sleep(1000);
-        onView(withId(R.id.editTExtName)).perform(replaceText("Ying"), closeSoftKeyboard());
+        editTextName.perform(replaceText("Ying"), closeSoftKeyboard());
 
         SystemClock.sleep(1000);
-        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        addBtn.perform(click());
 
         SystemClock.sleep(1000);
         onView(withText("Please Enter user info")).check(matches(isDisplayed()));
 
         SystemClock.sleep(1000);
-        onView(allOf(withId(android.R.id.button1), withText("OK"))).perform(click());
+        okBtn.perform(click());
     }
 
     //----- กรอก Name=Ying และ Age=20 กดปุ่ม ADDED และกด GO TO LIST จะต้องเจอ Ying อายุ 20 เป็นตัวแรก -----//
     @Test
     public void test5() {
         SystemClock.sleep(1000);
-        onView(withId(R.id.editTExtName)).perform(replaceText("Ying"), closeSoftKeyboard());
+        editTextName.perform(replaceText("Ying"), closeSoftKeyboard());
 
         SystemClock.sleep(1000);
-        onView(withId(R.id.editTextAge)).perform(replaceText("20"), closeSoftKeyboard());
+        editTextAge.perform(replaceText("20"), closeSoftKeyboard());
 
         SystemClock.sleep(1000);
-        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        addBtn.perform(click());
 
         SystemClock.sleep(1000);
-        onView(allOf(withId(R.id.buttonGotoList), withText("GO TO LIST"))).perform(click());
+        buttonGotoList.perform(click());
 
         SystemClock.sleep(1000);
         onView(withRecyclerView(R.id.list).atPositionOnView(0, R.id.textName)).check(matches(withText("Ying")));
@@ -108,16 +114,16 @@ public class MainActivityTest {
     @Test
     public void test6() {
         SystemClock.sleep(1000);
-        onView(withId(R.id.editTExtName)).perform(replaceText("Ladarat"), closeSoftKeyboard());
+        editTextName.perform(replaceText("Ladarat"), closeSoftKeyboard());
 
         SystemClock.sleep(1000);
-        onView(withId(R.id.editTextAge)).perform(replaceText("20"), closeSoftKeyboard());
+        editTextAge.perform(replaceText("20"), closeSoftKeyboard());
 
         SystemClock.sleep(1000);
-        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        addBtn.perform(click());
 
         SystemClock.sleep(1000);
-        onView(allOf(withId(R.id.buttonGotoList), withText("GO TO LIST"))).perform(click());
+        buttonGotoList.perform(click());
 
         SystemClock.sleep(1000);
         onView(withRecyclerView(R.id.list).atPositionOnView(1, R.id.textName)).check(matches(withText("Ladarat")));
@@ -127,16 +133,16 @@ public class MainActivityTest {
     @Test
     public void test7() {
         SystemClock.sleep(1000);
-        onView(withId(R.id.editTExtName)).perform(replaceText("Somkait"), closeSoftKeyboard());
+        editTextName.perform(replaceText("Somkait"), closeSoftKeyboard());
 
         SystemClock.sleep(1000);
-        onView(withId(R.id.editTextAge)).perform(replaceText("80"), closeSoftKeyboard());
+        editTextAge.perform(replaceText("80"), closeSoftKeyboard());
 
         SystemClock.sleep(1000);
-        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        addBtn.perform(click());
 
         SystemClock.sleep(1000);
-        onView(allOf(withId(R.id.buttonGotoList), withText("GO TO LIST"))).perform(click());
+        buttonGotoList.perform(click());
 
         SystemClock.sleep(1000);
         onView(withRecyclerView(R.id.list).atPositionOnView(2, R.id.textName)).check(matches(withText("Somkait")));
@@ -146,16 +152,16 @@ public class MainActivityTest {
     @Test
     public void test8() {
         SystemClock.sleep(1000);
-        onView(withId(R.id.editTExtName)).perform(replaceText("Prayoch"), closeSoftKeyboard());
+        editTextName.perform(replaceText("Prayoch"), closeSoftKeyboard());
 
         SystemClock.sleep(1000);
-        onView(withId(R.id.editTextAge)).perform(replaceText("60"), closeSoftKeyboard());
+        editTextAge.perform(replaceText("60"), closeSoftKeyboard());
 
         SystemClock.sleep(1000);
-        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        addBtn.perform(click());
 
         SystemClock.sleep(1000);
-        onView(allOf(withId(R.id.buttonGotoList), withText("GO TO LIST"))).perform(click());
+        buttonGotoList.perform(click());
 
         SystemClock.sleep(1000);
         onView(withRecyclerView(R.id.list).atPositionOnView(3, R.id.textName)).check(matches(withText("Prayoch")));
