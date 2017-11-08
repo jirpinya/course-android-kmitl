@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#390055</color>
+
+    <color name="colorPrimary">#390055</color>
+    <color name="colorPrimaryDark">#4a797a</color>
+    <color name="tabsScrollColor">#4a797a</color>
+
+    <color name="textGreen">#32CD32</color>
+    <color name="incomeHolder">#261B0179</color>
+    <color name="expenseHolder">#26760148</color>
+</resources>

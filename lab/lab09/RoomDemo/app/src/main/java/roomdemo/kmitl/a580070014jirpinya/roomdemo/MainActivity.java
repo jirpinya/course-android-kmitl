@@ -2,7 +2,6 @@ package roomdemo.kmitl.a580070014jirpinya.roomdemo;
 
 import android.arch.persistence.room.Room;
 import android.os.AsyncTask;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,9 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         messageDB = Room.databaseBuilder(this,
-                MessageDB.class,"MESSAGE")
+                MessageDB.class, "MESSAGE")
                 .build();
-
 
         new AsyncTask<Void, Void, MessageInfo>() {
             @Override
@@ -34,19 +32,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 messageInfo.setText("Hello");
                 messageInfo.setTime(new Date().toString());
                 messageDB.getMessageInfoDAO().insert(messageInfo);
-
                 return null;
             }
         }.execute();
 
         Button showMessagesButton = findViewById(R.id.showMessageBtn);
         showMessagesButton.setOnClickListener(this);
-
     }
 
     @Override
     public void onClick(View view) {
-
         new AsyncTask<Void, Void, List<MessageInfo>>() {
             @Override
             protected List<MessageInfo> doInBackground(Void... voids) {
@@ -56,14 +51,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             protected void onPostExecute(List<MessageInfo> messageInfos) {
-                ArrayAdapter<MessageInfo> adapter = new ArrayAdapter<MessageInfo>( MainActivity.this,
+                ArrayAdapter<MessageInfo> adapter = new ArrayAdapter<MessageInfo>(MainActivity.this,
                         android.R.layout.simple_list_item_1, messageInfos);
                 ListView messageInfoList = findViewById(R.id.messageList);
                 messageInfoList.setAdapter(adapter);
             }
-
-
         }.execute();
-
     }
 }
